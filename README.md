@@ -42,76 +42,72 @@
 Install these packages using:
 ```bash
 pip install -r requirements.txt
+```
 
+## Project Structure
 
-Project Structure
+- **main.py: Entry point of the application with the command-line interface.
+- **db_setup.py: Handles database connection and initialization.
+- **security.py: Manages key derivation, encryption, decryption, and master key changes.
+- **credentials.py: Contains functions to manage credentials, including encryption and decryption.
+- **salt.bin: Stores the salt used for key derivation (generated on first run).
+- **secure_passwords.db: SQLite database storing all credentials (with passwords stored encrypted).
+- **requirements.txt: Lists all Python dependencies.
+- **README.md: Project documentation.
 
-    main.py: Entry point of the application with the command-line interface.
-    db_setup.py: Handles database connection and initialization.
-    security.py: Manages key derivation, encryption, decryption, and master key changes.
-    credentials.py: Contains functions to manage credentials, including encryption and decryption.
-    salt.bin: Stores the salt used for key derivation (generated on first run).
-    secure_passwords.db: SQLite database storing all credentials (with passwords stored encrypted).
-    requirements.txt: Lists all Python dependencies.
-    README.md: Project documentation.
-
-Usage
-Running the Application
-
-    Set Up Environment:
-        Install dependencies:
-
+## Usage
+- **Running the Application
+- **Set Up Environment:
+  - `Install dependencies:`
+    ```bash
     pip install -r requirements.txt
-
-Run the Application:
-
+    ```
+  - `Run the Application:`
+    ```bash
     python main.py
+    ```
+  - `Follow the prompts to set up a master password and start managing your credentials.`
 
-    Follow the prompts to set up a master password and start managing your credentials.
+## Command-Line Interface
 
-Command-Line Interface
+- **The application provides a user-friendly CLI with the following options:
+- **Add Credential: Add a new service credential.
+- **Retrieve Credential: Retrieve credentials for a specific service.
+- **Update Credential: Update existing credentials.
+- **Delete Credential: Delete credentials for a service.
+- **Change Master Password: Change the master password.
 
-The application provides a user-friendly CLI with the following options:
+## Auto-Lock Feature
 
-    Add Credential: Add a new service credential.
-    Retrieve Credential: Retrieve credentials for a specific service.
-    Update Credential: Update existing credentials.
-    Delete Credential: Delete credentials for a service.
-    Change Master Password: Change the master password.
+- **CimeddaManager automatically locks the session after a period of inactivity (default: 5 minutes). This feature enhances security by requiring re-authentication if the application is left idle.
+- **Security Considerations
+- **Encryption
+- **Algorithm: AES-256 is used for encrypting sensitive data.
+- **Key Derivation: PBKDF2 with SHA-256 ensures strong key derivation using a unique salt.
 
-Auto-Lock Feature
+## Key Management
 
-CimeddaManager automatically locks the session after a period of inactivity (default: 5 minutes). This feature enhances security by requiring re-authentication if the application is left idle.
-Security Considerations
-Encryption
+- **The master password is never stored. A derived key is used for encryption and decryption.
 
-    Algorithm: AES-256 is used for encrypting sensitive data.
-    Key Derivation: PBKDF2 with SHA-256 ensures strong key derivation using a unique salt.
+## Access Control
 
-Key Management
+- **The application locks after inactivity and limits attempts for master password verification to prevent unauthorized access.
 
-    The master password is never stored. A derived key is used for encryption and decryption.
+## Extensibility
 
-Access Control
+    CimeddaManager is designed to be extensible. Potential enhancements include:
 
-    The application locks after inactivity and limits attempts for master password verification to prevent unauthorized access.
+    - **Adding a GUI using frameworks like Tkinter or PyQt.
+    - **Cloud synchronization for credentials.
+    - **Integration with browser extensions for autofill.
 
-Extensibility
+## Contributing
 
-CimeddaManager is designed to be extensible. Potential enhancements include:
-
-    Adding a GUI using frameworks like Tkinter or PyQt.
-    Cloud synchronization for credentials.
-    Integration with browser extensions for autofill.
-
-Contributing
-
-Contributions are welcome! If you'd like to contribute, please fork the repository and submit a pull request.
+- **Contributions are welcome! If you'd like to contribute, please fork the repository and submit a pull request.
 License
+- **This project is licensed under the MIT License. See the LICENSE file for details.
 
-This project is licensed under the MIT License. See the LICENSE file for details.
-Acknowledgements
-
-    Cryptography: For robust encryption and key management.
-    SQLite: Lightweight and powerful database management.
-    Colorama: For adding colorful terminal outputs.
+## Acknowledgements
+- **Cryptography: For robust encryption and key management.
+- **SQLite: Lightweight and powerful database management.
+- **Colorama: For adding colorful terminal outputs.
